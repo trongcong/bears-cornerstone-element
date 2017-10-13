@@ -1,0 +1,165 @@
+@mixin transition($transition) {
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  transition: $transition;
+}
+
+/**************
+Heading Element
+**************/
+.bce-heading-element {
+  > * {
+    margin: 0;
+  }
+}
+
+/**************
+Custom Block Element
+**************/
+.bce-custom-block-element {
+  .inner-wrap {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+    background-color: #000000;
+    background-position: center center;
+    background-size: cover;
+    @include transition(0.3s);
+    &:before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      @include transition(background 0.3s);
+    }
+    &:hover {
+      .content {
+        -webkit-transform: translateY(-50px);
+        -ms-transform: translateY(-50px);
+        transform: translateY(-50px);
+        .readmore {
+          margin-top: 30px;
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+      &:before {
+        background: rgba(0, 0, 0, 0.4);
+      }
+    }
+    .content {
+      position: absolute;
+      padding: 50px;
+      bottom: -50px;
+      left: 0;
+      right: 0;
+      z-index: 5;
+      @include transition(0.3s);
+      @media only screen and (max-width: 480px) {
+        padding: 20px;
+      }
+      .heading {
+        color: #fff;
+        font-size: 18px;
+        line-height: 24px;
+        letter-spacing: .12em;
+        margin: 0;
+        padding: 0;
+      }
+      .description {
+        color: #fff;
+        display: block;
+        font-size: 14px;
+        margin-top: 20px;
+        margin-bottom: 0;
+      }
+      .readmore {
+        height: auto;
+        margin-top: 0;
+        opacity: 0;
+        visibility: hidden;
+        @include transition(all .3s);
+        color: #fff;
+        background: #222;
+        border-radius: 0;
+        text-transform: uppercase;
+        font-size: 11px;
+        letter-spacing: .22em;
+        text-decoration: none;
+        border: none;
+        line-height: 22px;
+        padding: 13px 30px;
+        display: inline-block;
+        span {
+          vertical-align: middle;
+        }
+        .icon {
+          margin-right: 0;
+          margin-left: 10px;
+          width: 18px;
+          height: 18px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+        &:hover {
+          color: #fff;
+          background: #777779;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+/**************
+Team Element
+**************/
+.bce-team-element {
+  .team-wrap {
+    .team-img {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+      &:hover {
+        .overlay {
+          opacity: 1;
+        }
+      }
+      .overlay {
+        opacity: 0;
+        transition: opacity .5s ease-in;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(34, 34, 34, .4);
+        svg {
+          width: 40px;
+          height: 40px;
+          position: absolute;
+          top: 30px;
+          right: 30px;
+        }
+      }
+    }
+    .team-name {
+      margin-top: 20px;
+      margin-bottom: 5px;
+      font-size: 14px;
+      line-height: 22px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .team-position {
+      color: #c2c2c2;
+      font-size: 13px;
+      line-height: 20px;
+      letter-spacing: .12em;
+      margin: 0 0 10px;
+      text-transform: uppercase;
+    }
+  }
+}
